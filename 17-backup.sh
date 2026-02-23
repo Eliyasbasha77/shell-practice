@@ -43,3 +43,15 @@ if [ ! -d $DEST_DIR ]; then
     echo -e "$R Destination $DEST_DIR does not exist $N"
     exit 1
 fi
+
+
+if [ ! -z "${FILES}" ]; then
+    ### Start Archeiving ###
+    echo "Files found: $FILES"
+    TIMESTAMP=$(date +%F-%H-%M)
+    ZIP_FILE_NAME="$DEST_DIR/app-logs-$TIMESTAMP.zip"
+    echo "Zip file name: $ZIP_FILE_NAME"
+    find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS | zip -@ -j "$ZIP_FILE_NAME"
+
+    ### Check Archieval Success or not ###
+    if [ -f $ZIP_FILE_NAME ]
