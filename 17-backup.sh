@@ -58,3 +58,10 @@ if [ ! -z "${FILES}" ]; then
      then
         echo -e "Archeival ... $G SUCCESS $N"
 
+  ### Delete if success ###
+        while IFS= read -r filepath
+        do
+            echo "Deleting the file: $filepath"
+            rm -rf $filepath
+            echo "Deleted the file: $filepath"
+        done <<< $FILES
