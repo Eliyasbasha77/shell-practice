@@ -65,3 +65,7 @@ if [ ! -z "${FILES}" ]; then
             rm -rf $filepath
             echo "Deleted the file: $filepath"
         done <<< $FILES
+    else
+        echo "Archieval ... $R FAILURE $N"
+        exit 1
+    fi
