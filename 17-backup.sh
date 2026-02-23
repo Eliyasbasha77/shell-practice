@@ -44,6 +44,9 @@ if [ ! -d $DEST_DIR ]; then
     exit 1
 fi
 
+### Find the files ####
+FILES=$(find $SOURCE_DIR -name "*.log" -type f -mtime +$DAYS)
+
 
 if [ ! -z "${FILES}" ]; then
     ### Start Archeiving ###
@@ -55,10 +58,10 @@ if [ ! -z "${FILES}" ]; then
 
     ### Check Archieval Success or not ###
     if [ -f $ZIP_FILE_NAME ]
-     then
+    then
         echo -e "Archeival ... $G SUCCESS $N"
 
-  ### Delete if success ###
+        ### Delete if success ###
         while IFS= read -r filepath
         do
             echo "Deleting the file: $filepath"
@@ -71,4 +74,4 @@ if [ ! -z "${FILES}" ]; then
     fi
 else
     echo -e "No files to archeive ... $Y SKIPPING $N"
-fi    
+fi
