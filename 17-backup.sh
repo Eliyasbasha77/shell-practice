@@ -21,3 +21,13 @@ if [ $USERID -ne 0 ]; then
     echo "ERROR:: Please run this script with root privelege"
     exit 1 # failure is other than 0
 fi
+
+USAGE(){
+    echo -e "$R USAGE:: sudo sh 26-backup.sh <SOURCE_DIR> <DEST_DIR> <DAYS>[optional, default 14 days] $N"
+    exit 1
+}
+
+### Check SOURCE_DIR and DEST_DIR passed or not ####
+if [ $# -lt 2 ]; then
+    USAGE
+fi
